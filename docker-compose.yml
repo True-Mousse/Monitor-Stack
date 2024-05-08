@@ -1,4 +1,5 @@
 services:
+  # Prometheus service for monitoring
   prometheus:
     image: docker.io/prom/prometheus:latest
     container_name: prometheus
@@ -12,6 +13,7 @@ services:
     networks:
       - lab-net
       
+  # Grafana service for visualization    
   grafana:
     image: docker.io/grafana/grafana-oss:10.4.2
     container_name: grafana
@@ -22,7 +24,8 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - lab-net       
-
+      
+  # Node Exporter for collecting host metrics
   node-exporter:
     image: quay.io/prometheus/node-exporter:v1.8.0
     container_name: node-exporter
@@ -33,14 +36,15 @@ services:
     pid: host
     volumes:
       - '/:/host:ro,rslave'
-
+      
+  # Pi-hole Exporter for Pi-hole metrics
   pihole-exporter:
     image: docker.io/ekofr/pihole-exporter:latest
     container_name: pihole-exporter
     restart: unless-stopped
     environment:
-      PIHOLE_HOSTNAME: 100.112.39.36
-      PIHOLE_PASSWORD: 'P@ssw0rd'
+      PIHOLE_HOSTNAME: <CHANGE_TO_PIHOLE_IP>
+      PIHOLE_PASSWORD: <CHANGE_TO_PIHOLE_PASSWORD>
       PORT: 9617
     ports:
       - 9617:9617
@@ -48,12 +52,12 @@ services:
       - lab-net    
 
 networks:
-  lab-net:
+  lab-net: # Define an external network called lab-net
     external: true
 
 volumes:
-  prometheus_data:
+  prometheus_data: # Prometheus data storage
     external: true
     
-  grafana_data:
+  grafana_data: # Grafana data storage
     external: true   
