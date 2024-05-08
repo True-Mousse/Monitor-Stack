@@ -43,7 +43,7 @@ Collects metrics from a Pi-hole instance for monitoring its status.
 
 **1. Clone the Repository**:
 
-`git clone https://github.com/your-repo.git cd your-repo2.`
+`git clone https://github.com/True-Mousse/Monitor-Stack.git`
 
 **2. Create Docker Network (`lab-net`)**:
 
