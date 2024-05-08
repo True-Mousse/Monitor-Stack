@@ -1,18 +1,23 @@
+# Global configuration setting
 global:
-  scrape_interval:     15s
+  scrape_interval:     15s # Global scrape interval set to 15 seconds
 
+# List of scrape configurations for different jobs
 scrape_configs:
+  # Prometheus job configuration
   - job_name: 'prometheus'
-    scrape_interval: 5s
+    scrape_interval: 5s # Scrape interval specifically for the 'prometheus' job (every 5 seconds)
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['localhost:9090'] # Targets to scrape metrics from (Prometheus itself running on localhost:9090)
 
+  # Node Exporter job configuration
   - job_name: 'node-exporter'
-    scrape_interval: 30s
+    scrape_interval: 30s # Scrape interval for the 'node-exporter' job (every 30 seconds)
     static_configs:
-      - targets: ['10.0.1.50:9100'] 
+      - targets: ['<CHANGE_TO_NODE_EXPORTER_IP):9100'] # Targets to scrape metrics from Node Exporter running 
 
+  # Pi-hole job configuration
   - job_name: 'pihole'
-    scrape_interval: 30s
+    scrape_interval: 30s # Scrape interval for the 'pihole' job (every 30 seconds)
     static_configs:
-      - targets: ['pihole-exporter:9617']
+      - targets: ['pihole-exporter:9617'] # Targets to scrape metrics from Pi-hole exporter running on pihole-exporter:9617
