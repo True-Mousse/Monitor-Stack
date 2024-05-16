@@ -51,7 +51,7 @@ Collects metrics from a Pi-hole instance for monitoring its status.
 
 **3. Create Docker Volumes**:
 
-`docker volume create prometheus_data docker volume create grafana_data`
+`docker volume create prometheus_data grafana_data`
 
 **4. Start the Services**:
 
